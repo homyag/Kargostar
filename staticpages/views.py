@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import SiteSettings, Service, Advantage, PageSection, Marketplace
 
 
@@ -48,10 +47,9 @@ def index(request):
         'hero': {
             'title': sections.get('hero').title if sections.get('hero') else settings.site_title,
             'description': sections.get('hero').content if sections.get('hero') else settings.site_description,
-            'bg_image': sections.get('hero').background_image if sections.get(
-                'hero') else 'https://images.reg.solutions/1000x/https://files.reg.solutions/675eb099-5b19-4d6e-a3dc-50b4490b7d69/images/1b6c4298-1856-4b9b-9b94-69cce7a7b638-logistics-means-transport-together-with-technological-futuristic-holograms.jpg',
+            'background_image': sections.get('hero').background_image if sections.get('hero') and sections.get('hero').background_image else '/static/staticpages/img/hero_background.jpg',
             'cta_text': 'Получить консультацию',
-            'cta_link': '#block-544340'
+            'cta_link': '#contacts'
         },
 
         # О компании

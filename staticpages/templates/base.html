@@ -5,96 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{{ site_title }}{% endblock %}</title>
 
-    <!-- Шрифты -->
-    <style>
-        * {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-        }
-    </style>
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- CSS стили -->
     {% load static %}
-    <link rel="stylesheet" href="{% static 'staticpages/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'staticpages/css/modern.css' %}">
 
     <!-- Мета теги -->
     <meta name="description" content="{% block description %}{{ site_description }}{% endblock %}">
-    <meta name="keywords" content="{% block keywords %}ВЭД, таможенное оформление, сертификация, декларации{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}ВЭД, таможенное оформление, сертификация, декларации, КаргоСтар{% endblock %}">
+
+    <!-- Open Graph -->
     <meta property="og:title" content="{% block og_title %}{{ site_title }}{% endblock %}">
     <meta property="og:description" content="{% block og_description %}{{ site_description }}{% endblock %}">
+    <meta property="og:type" content="website">
     <meta property="og:url" content="https://kargo-star.regsolutions.site">
-    <meta property="og:image" content="https://files.reg.solutions">
+    <meta property="og:image" content="{{ logo_url }}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ site_title }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ site_description }}{% endblock %}">
 
     <!-- Фавиконки -->
-    <link rel="icon" href="https://files.reg.solutionsundefined" type="image/x-icon" sizes="32x32">
-    <link rel="icon" href="https://files.reg.solutionsundefined" type="image/png">
-    <link rel="apple-touch-icon" href="https://files.reg.solutionsundefined">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <div id="__nuxt">
-        <div class="ds-layout GLOBAL-color-theme-dark">
-            <!-- Хедер -->
-            <header class="lb-header ds-header GLOBAL-color-theme-light">
-                <div class="lb-header__wrapper">
-                    <div class="lb-header__content">
-                        <div class="lb-header__group lb-header__group_type_left">
-                            <a class="ds-logo" href="/">
-                                <img src="{{ logo_url }}" alt="{{ site_title }}" class="ds-logo__image">
-                            </a>
-                            <nav class="ds-menu" aria-label="Main menu">
-                                <ul class="ds-menu__list">
-                                    <li class="ds-menu__list-item">
-                                        <div class="ds-menu-item">
-                                            <a class="ds-menu-item__link" href="/#block-543960">О компании</a>
-                                        </div>
-                                    </li>
-                                    <li class="ds-menu__list-item">
-                                        <div class="ds-menu-item">
-                                            <a class="ds-menu-item__link" href="/">Услуги</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="lb-header__group lb-header__group_type_right">
-                            <div class="lb-header__buttons">
-                                <a class="ds-button ds-button_color_primary ds-button_size_m" href="/#block-544340">
-                                    <span class="ds-button__text">Контакты</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__container">
+                <a href="/" class="logo">
+                    {% if logo_url %}
+                    <img src="{{ logo_url }}" alt="{{ site_title }}" class="logo__image">
+                    {% else %}
+                    {{ site_title }}
+                    {% endif %}
+                </a>
 
-            <!-- Контент -->
-            <main class="ds-main ds-main_mode_view">
-                {% block content %}{% endblock %}
-            </main>
+                <nav class="nav" aria-label="Главная навигация">
+                    <ul class="nav__list">
+                        <li><a href="#about" class="nav__link">О компании</a></li>
+                        <li><a href="#services" class="nav__link">Услуги</a></li>
+                        <li><a href="#contacts" class="nav__link">Контакты</a></li>
+                    </ul>
 
-            <!-- Футер -->
-            <footer class="lb-footer-column ds-footer GLOBAL-color-theme-light">
-                <div class="lb-footer-column__content_type_alone lb-footer-column__wrapper lb-footer-column__content">
-                    <a class="ds-logo" href="/">
-                        <img src="{{ logo_url }}" alt="{{ site_title }}" class="ds-logo__image">
-                    </a>
-                </div>
-                <div class="lb-footer-column__wrapper lb-footer-column__footer">
-                    <p class="ds-copyright lb-footer-column__сopyright">
-                        Ваш сайт. Все права защищены© {{ year }}
-                    </p>
-                </div>
-            </footer>
+                    <a href="#contacts" class="btn btn--primary">Консультация</a>
+                </nav>
+            </div>
+        </div>
+    </header>
 
-            <!-- Партнерский блок -->
-            <div class="ds-reg-partner">
-                <a href="https://boldrise.ru" target="_blank" class="ds-reg-partner__link">
-                    <span class="ds-reg-partner__text">Powered by Boldrise Agency</span>
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    {% if logo_url %}
+                    <img src="{{ logo_url }}" alt="{{ site_title }}" class="logo__image">
+                    {% else %}
+                    <strong>{{ site_title }}</strong>
+                    {% endif %}
+                </div>
+
+                <p class="footer__copyright">
+                    © {{ year }} {{ site_title }}. Все права защищены.
+                </p>
+
+                <a href="https://boldrise.ru" target="_blank" rel="noopener noreferrer" class="footer__powered">
+                    Powered by Boldrise Agency
                 </a>
             </div>
         </div>
-    </div>
+    </footer>
 
     {% block extra_js %}{% endblock %}
 </body>
