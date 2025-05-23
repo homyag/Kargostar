@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Главный баннер -->
+<section class="ds-packer ds-packer_type_hero GLOBAL-color-theme-light">
+    <article id="block-543959" class="b-banner-hero">
+        <div class="b-banner-hero__content" style="background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), center/cover url('{{ hero.bg_image }}');">
+            <div class="b-banner-hero__content-wrapper">
+                <h1 class="b-banner-hero__title">{{ hero.title }}</h1>
+                <p class="b-banner-hero__text">{{ hero.description }}</p>
+                <div class="b-banner-hero__buttons-wrapper">
+                    <a class="ds-button ds-button_color_secondary-inverse ds-button_size_m" href="{{ hero.cta_link }}">
+                        <span class="ds-button__text">{{ hero.cta_text }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- О компании -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large GLOBAL-color-theme-light">
+    <article id="block-543960" class="b-text">
+        <div class="ds-container">
+            <h2 class="ds-container__title">{{ about.title }}</h2>
+            <strong class="ds-container__subtitle">{{ about.subtitle }}</strong>
+            <div class="ds-container__content">
+                <p class="b-text__text_align_center b-text__text">{{ about.description|linebreaks }}</p>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Таможенное оформление -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large GLOBAL-color-theme-light">
+    <article id="block-544259" class="b-tags">
+        <div class="ds-container">
+            <h2 class="ds-container__title">{{ customs_services.title }}</h2>
+            <strong class="ds-container__subtitle">{{ customs_services.subtitle|linebreaks }}</strong>
+            <div class="ds-container__content_backed ds-container__content">
+                <ul class="ds-list ds-list_type_horizontal ds-list_gap_m">
+                    {% for service in customs_services.services %}
+                    <li class="ds-list-item b-tags__main-item">
+                        <div class="ds-static-icon ds-static-icon_type_outline ds-static-icon_size_m ds-static-icon_color_dark b-tags__icon">
+                            {% include 'staticpages/icons/'|add:service.icon|add:'.html' %}
+                        </div>
+                        <span class="b-tags__main-item-text">{{ service.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Разрешительная документация -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large GLOBAL-color-theme-light">
+    <article id="block-544265" class="b-tags">
+        <div class="ds-container">
+            <h2 class="ds-container__title ds-container__title_single">{{ permits.title }}</h2>
+            <div class="ds-container__content_backed ds-container__content">
+                <ul class="ds-list ds-list_type_horizontal ds-list_gap_m">
+                    {% for service in permits.services %}
+                    <li class="ds-list-item b-tags__main-item">
+                        <div class="ds-static-icon ds-static-icon_type_outline ds-static-icon_size_m ds-static-icon_color_dark b-tags__icon">
+                            {% include 'staticpages/icons/'|add:service.icon|add:'.html' %}
+                        </div>
+                        <span class="b-tags__main-item-text">{{ service.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="ds-divider ds-divider_type_horizontal ds-divider_size_s b-tags__divider">
+                    <span class="ds-divider__divider_color_light ds-divider__divider"></span>
+                </div>
+
+                <div class="ds-tags-list">
+                    <ul class="ds-tags-list__list_type_wrap ds-tags-list__list">
+                        {% for marketplace in permits.marketplaces %}
+                        <li class="ds-tags-list__item">
+                            <div class="ds-tag ds-tag_type_primary">
+                                {% include 'staticpages/icons/checkmark.html' %}
+                                <span class="ds-tag__text">{{ marketplace.name }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Классификация и защита интересов -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large GLOBAL-color-theme-light">
+    <article id="block-544268" class="b-tags">
+        <div class="ds-container">
+            <h2 class="ds-container__title ds-container__title_single">{{ classification.title }}</h2>
+            <div class="ds-container__content_backed ds-container__content">
+                <ul class="ds-list ds-list_type_horizontal ds-list_gap_m">
+                    {% for service in classification.services %}
+                    <li class="ds-list-item b-tags__main-item">
+                        <div class="ds-static-icon ds-static-icon_type_outline ds-static-icon_size_m ds-static-icon_color_dark b-tags__icon">
+                            {% include 'staticpages/icons/'|add:service.icon|add:'.html' %}
+                        </div>
+                        <span class="b-tags__main-item-text">{{ service.title }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Почему выбирают нас -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large GLOBAL-color-theme-light">
+    <article id="block-543964" class="b-info-group">
+        <div class="ds-container">
+            <h2 class="ds-container__title ds-container__title_single">{{ advantages.title }}</h2>
+            <div class="ds-container__content">
+                <ul class="ds-list ds-list_type_horizontal ds-list_gap_m">
+                    {% for item in advantages.items %}
+                    <li class="ds-list-item">
+                        <div class="ds-card-wrapper ds-card-wrapper_type_basic">
+                            <article class="ds-info-card ds-info-card_theme_compact">
+                                <img src="{{ item.image_url }}" alt="{{ item.title }}" class="ds-info-card__image" loading="lazy">
+                                <div class="ds-info-card__wrapper">
+                                    <div class="ds-sniped-text ds-info-card__title">
+                                        <strong class="ds-sniped-text__snip">{{ item.title }}</strong>
+                                    </div>
+                                    <div class="ds-sniped-text ds-info-card__description ds-info-card__description_last">
+                                        <p class="ds-sniped-text__snip">{{ item.description }}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Контакты -->
+<section class="ds-packer ds-packer_type_content ds-packer_gap-top_large ds-packer_gap-bottom_large contacts-section">
+    <article id="block-544340" class="b-text">
+        <div class="ds-container contacts-content">
+            <h2 class="contacts-title">{{ contacts.title }}</h2>
+            <div class="contacts-subtitle">{{ contacts.subtitle|linebreaks }}</div>
+            <div class="contacts-info">
+                <div class="contacts-phones">
+                    {% for phone in contacts.phones %}
+                        <a href="tel:{{ phone|cut:' '|cut:'('|cut:')'|cut:'-' }}" class="contacts-phone">{{ phone }}</a>
+                    {% endfor %}
+                </div>
+                <a href="mailto:{{ contacts.email }}" class="contacts-email">{{ contacts.email }}</a>
+            </div>
+        </div>
+    </article>
+</section>
+{% endblock %}
